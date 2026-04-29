@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario de Dirección</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body class="bg-light">
+    <header class="bg-secondary shadow-sm text-center py-4 mb-5">
+      <img src="src/adelante-andalucia.png" alt="Logo Adelante Andalucía" class="logo">
+    </header>
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <h1 class="h3 mb-3 text-center">Calcula cuanto costaría tu alquiler.</h1>
+              <p class="text-center text-muted mb-4">
+                Introduce tu dirección y nosotros calcularemos cuanto costaría tu alquiler si se aplicase la ley del alquiler al 20% de las ganancias.
+              </p>
+              <p class="text-center text-muted mb-4">
+                Para realizar el calculo tendremos en cuenta el valor del ingreso medio por vivienda de tu zona.
+              </p>
+              <form>
+                <div class="mb-3">
+                  <label for="direccion" class="form-label">Dirección</label>
+                  <input
+                    type="text"
+                    id="direccion"
+                    class="form-control form-control-lg"
+                    placeholder="Calle, número, ciudad"
+                  />
+                </div>
+                <div class="d-grid">
+                  <button id="calculate" type="submit" class="btn btn-primary btn-lg">
+                    Calcular
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-12 col-md-8 col-lg-6">
+          <div id="result" class="card shadow-sm border-0 d-none">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-3 text-center">Resultado</h2>
+              <p id="rentaMedia" class="text-center text-muted mb-2"></p>
+              <p id="rentaMediaMensual" class="text-center text-muted mb-2"></p>
+              <p id="alquilerCalculado" class="text-center text-muted mb-0"></p>
+            </div>
+          </div>
+          <div id="error" class="card shadow-sm border-0 d-none">
+            <div class="card-body p-4">
+              <h2 class="h4 mb-3 text-center">Error</h2>
+              <p class="text-center text-muted mb-0">Ocurrió un error al calcular el alquiler.</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+
+    </body>
+</html>
