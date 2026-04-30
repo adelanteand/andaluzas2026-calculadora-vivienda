@@ -59,14 +59,14 @@ if (form && direccionInput) {
               console.log('Alquiler calculado 1:', alquilerCalculado1);
               console.log('Alquiler calculado 2:', alquilerCalculado2);
               const formatNumber = value => Number(value).toLocaleString('es-ES', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0,
               });
 
-              document.getElementById('rentaMedia').textContent = formatNumber(rentaMedia);
-              document.getElementById('rentaMediaMensual').textContent = formatNumber(rentaMediaMensual);
-              document.getElementById('alquilerCalculado1').textContent = formatNumber(alquilerCalculado1);
-              document.getElementById('alquilerCalculado2').textContent = formatNumber(alquilerCalculado2);
+              document.getElementById('rentaMedia').textContent = formatNumber(rentaMedia) + ' €';
+              document.getElementById('rentaMediaMensual').textContent = formatNumber(rentaMediaMensual) + ' €';
+              document.getElementById('alquilerCalculado1').textContent = formatNumber(alquilerCalculado1) + ' €';
+              document.getElementById('alquilerCalculado2').textContent = formatNumber(alquilerCalculado2) + ' €';
               document.getElementById('result').classList.remove('d-none');
 
             });
