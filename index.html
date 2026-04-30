@@ -49,15 +49,21 @@
           <div id="result" class="card shadow-sm border-0 d-none">
             <div class="card-body p-4">
               <h2 class="h4 mb-3 text-center">Resultado</h2>
-              <p id="rentaMedia" class="text-center text-muted mb-2"></p>
-              <p id="rentaMediaMensual" class="text-center text-muted mb-2"></p>
-              <p id="alquilerCalculado" class="text-center text-muted mb-0"></p>
+              <p class="text-center text-muted mb-2">
+                Renta media por hogar al año: <span id="rentaMedia" class="h3 inline-text">${rentaMedia.toFixed(2)} €</span>
+              </p>
+              <p class="text-center text-muted mb-2">
+                Renta media por hogar al mes: <span class="h3 inline-text" id="rentaMediaMensual">${(rentaMedia / 12).toFixed(2)} €</span>
+              </p>
+              <p class="text-center text-muted mb-0">
+                Alquiler calculado: <span id="alquilerCalculado" class="h3 inline-text text-success">${alquilerCalculado.toFixed(2)} €</span>
+              </p>
             </div>
           </div>
           <div id="error" class="card shadow-sm border-0 d-none">
             <div class="card-body p-4">
               <h2 class="h4 mb-3 text-center">Error</h2>
-              <p class="text-center text-muted mb-0">Ocurrió un error al calcular el alquiler.</p>
+              <p class="text-center text-muted mb-0">Ocurrió un error al calcular el alquiler, por favor intenta de nuevo.</p>
             </div>
           </div>
         </div>

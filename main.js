@@ -16,18 +16,13 @@ if (form && direccionInput) {
     let rentaMedia = 0;
     let alquilerCalculado = 0;
 
-    console.log('Dirección ingresada:', direccion);
-    console.log('Query 1:', query1);
-
     fetch(query1)
       .then(response => response.json())
       .then(data => {
-        console.log('Resultado de query1:', data);
 
         if (data && data.candidates && data.candidates.length > 0) {
           const extent = data.candidates[0].extent;
           const extentString = JSON.stringify(extent);
-          console.log('Extent string:', extentString);
 
           // Actualizar geometryParams con los valores de extent
           geometryParams.xmin = extent.xmin;
@@ -35,11 +30,8 @@ if (form && direccionInput) {
           geometryParams.xmax = extent.xmax;
           geometryParams.ymax = extent.ymax;
 
-          console.log('GeometryParams actualizado:', geometryParams);
-
           // Construir query2 con geometryParams actualizado
           const query2 = 'https://services7.arcgis.com/SEjlCWTAIsMEEXNx/arcgis/rest/services/ADRH_2023_Renta_media_por_persona/FeatureServer/3/query?f=json&returnGeometry=false&geometry=' + encodeURIComponent(JSON.stringify(geometryParams)) + '&outFields=dato2';
-          console.log('Query 2:', query2);
 
           // Hacer la llamada a query2
           return fetch(query2)
@@ -47,7 +39,6 @@ if (form && direccionInput) {
             .then(data2 => {
               data2.features.forEach(feature => {
                 rentaMedia = feature.attributes.dato2;
-                console.log('Valor de dato2:', feature.attributes.dato2);
               });
 
               if (rentaMedia === 0) {
@@ -56,12 +47,11 @@ if (form && direccionInput) {
 
               alquilerCalculado = rentaMedia * 0.2 / 12;
 
-              document.getElementById('rentaMedia').textContent = `Renta media por hogar al año: ${rentaMedia.toFixed(2)} €`;
-              document.getElementById('rentaMediaMensual').textContent = `Renta media por hogar al mes: ${(rentaMedia / 12).toFixed(2)} €`;
-              document.getElementById('alquilerCalculado').textContent = `Alquiler calculado: ${alquilerCalculado.toFixed(2)} € al mes`;
+              document.getElementById('rentaMedia').textContent = rentaMedia.toFixed(2);
+              document.getElementById('rentaMediaMensual').textContent = (rentaMedia / 12).toFixed(2);
+              document.getElementById('alquilerCalculado').textContent = alquilerCalculado.toFixed(2);
               document.getElementById('result').classList.remove('d-none');
 
-              console.log('Resultado de query2:', data2);
             });
         }
       })
