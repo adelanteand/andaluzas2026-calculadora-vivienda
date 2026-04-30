@@ -30,3 +30,7 @@
 .bg-secondary {
     background-color: var(--bs-secondary) !important;
 }
+
+.logo {
+    max-height: 60px;
+}

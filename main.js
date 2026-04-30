@@ -18,14 +18,18 @@ if (form && direccionInput) {
     let alquilerCalculado = 0;
     let alquilerCalculado1 = 0;
     let alquilerCalculado2 = 0;
+    let normalizedAddress = '';
 
     fetch(query1)
       .then(response => response.json())
       .then(data => {
 
         if (data && data.candidates && data.candidates.length > 0) {
+          console.log(data);
+          normalizedAddress = data.candidates[0].address;
           const extent = data.candidates[0].extent;
           const extentString = JSON.stringify(extent);
+          console.log('Extent:', extentString);
 
           // Actualizar geometryParams con los valores de extent
           geometryParams.xmin = extent.xmin;
@@ -53,11 +57,7 @@ if (form && direccionInput) {
               alquilerCalculado = rentaMedia * 0.2 / 12;
               alquilerCalculado1 = alquilerCalculado * 0.95;
               alquilerCalculado2 = alquilerCalculado * 1.05;
-              console.log('Renta media:', rentaMedia);
-              console.log('Renta media mensual:', rentaMediaMensual);
-              console.log('Alquiler calculado:', alquilerCalculado);
-              console.log('Alquiler calculado 1:', alquilerCalculado1);
-              console.log('Alquiler calculado 2:', alquilerCalculado2);
+
               const formatNumber = value => Number(value).toLocaleString('es-ES', {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0,
@@ -67,14 +67,26 @@ if (form && direccionInput) {
               document.getElementById('rentaMediaMensual').textContent = formatNumber(rentaMediaMensual) + ' €';
               document.getElementById('alquilerCalculado1').textContent = formatNumber(alquilerCalculado1) + ' €';
               document.getElementById('alquilerCalculado2').textContent = formatNumber(alquilerCalculado2) + ' €';
+              document.getElementById('direccionConsultada').textContent = normalizedAddress;
               document.getElementById('result').classList.remove('d-none');
-
+              document.getElementById('newCalculation').classList.remove('d-none');
+              document.getElementById('calculationCard').classList.add('d-none');
             });
         }
       })
       .catch(error => {
         document.getElementById('error').classList.remove('d-none');
+        document.getElementById('newCalculation').classList.remove('d-none');
+        document.getElementById('calculationCard').classList.add('d-none');
         console.error('Error:', error);
       });
+  });
+
+  document.getElementById('newCalculation').addEventListener('click', function () {
+    document.getElementById('result').classList.add('d-none');
+    document.getElementById('error').classList.add('d-none');
+    document.getElementById('newCalculation').classList.add('d-none');
+    document.getElementById('calculationCard').classList.remove('d-none');
+    direccionInput.value = '';
   });
 }

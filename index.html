@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="main.css">
   </head>
   <body class="bg-light">
-    <header class="bg-secondary shadow-sm text-center py-4 mb-5">
+    <header class="bg-secondary shadow-sm text-center py-4 mb-4">
       <img src="src/adelante-andalucia.png" alt="Logo Adelante Andalucía" class="logo">
     </header>
-    <div class="container py-5">
+    <div class="container pb-5">
       <div class="row justify-content-center">
         <div class="col-12 col-md-8 col-lg-6">
-          <div class="card shadow-sm border-0">
+          <div id="calculationCard" class="card shadow-sm border-0">
             <div class="card-body p-4">
               <h1 class="h3 mb-3 text-center">Calcula cuanto costaría tu alquiler.</h1>
               <p class="text-center text-muted mb-4">
@@ -50,13 +50,16 @@
             <div class="card-body p-4">
               <h2 class="h4 mb-3 text-center">Resultado</h2>
               <p class="text-center text-muted mb-2">
-                Renta media por hogar al año: <span id="rentaMedia" class="h4 inline-text">${rentaMedia.toFixed(2)} €</span>
+                Renta media por hogar al año: <span id="rentaMedia" class="h4 inline-text"></span>
               </p>
               <p class="text-center text-muted mb-2">
-                Renta media por hogar al mes: <span class="h4 inline-text" id="rentaMediaMensual">${(rentaMedia / 12).toFixed(2)} €</span>
+                Renta media por hogar al mes: <span class="h4 inline-text" id="rentaMediaMensual"></span>
               </p>
               <p class="text-center text-muted mb-0 mt-2">
-                <strong>Alquiler calculado entre </strong> <span class="d-block h3 inline-text text-success"><strong id="alquilerCalculado1">${alquilerCalculado1.toFixed(2)} €</strong> y <strong id="alquilerCalculado2">${alquilerCalculado2.toFixed(2)} €</strong></span>
+                <strong>Alquiler calculado entre </strong> <span class="d-block h3 inline-text text-success"><strong id="alquilerCalculado1"></strong> y <strong id="alquilerCalculado2"></strong></span>
+              </p>
+              <p class="mt-5">
+                Dirección consultada: <strong id="direccionConsultada" class="inline-text"></strong>
               </p>
             </div>
           </div>
@@ -65,6 +68,9 @@
               <h2 class="h4 mb-3 text-center">Error</h2>
               <p class="text-center text-muted mb-0">Ocurrió un error al calcular el alquiler, por favor intenta de nuevo.</p>
             </div>
+          </div>
+          <div class="d-flex justify-content-center mt-3">
+            <button id="newCalculation" class="btn btn-primary d-none" aria-label="New Calculation" value="Volver a calcular">Volver a calcular</button>
           </div>
         </div>
     </div>

@@ -30,3 +30,7 @@ https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressC
 2. Endpoint para conocer las rentas medias anuales por hogar. Obtiene la información directamente del INE y se le pasan los parámetros obtenido en el endpoint anterior.
 https://services7.arcgis.com/SEjlCWTAIsMEEXNx/arcgis/rest/services/ADRH_2023_Renta_media_por_persona/FeatureServer/3/query?f=json&returnGeometry=false&geometry=%7B%22xmin%22%3A-701465.8603165227%2C%22ymin%22%3A4374347.363104819%2C%22xmax%22%3A-701243.221334936%2C%22ymax%22%3A4374624.451804138%2C%22spatialReference%22%3A%7B%22wkid%22%3A102100%7D%7D&outFields=dato2
 El parámetro outFields se refiere a los campos que queremos que nos devuelva, en este caso sólo queremos el dato2 que es el referente a los ingresos medios por hogar, pero se pueden obtener muchos más datos.
+
+## Url de acceso
+
+https://adelanteand.github.io/andaluzas2026-calculadora-vivienda/
