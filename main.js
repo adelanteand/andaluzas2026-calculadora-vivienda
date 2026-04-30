@@ -14,7 +14,10 @@ if (form && direccionInput) {
       encodeURIComponent(direccion) +
       '&outSR=%7B%22wkid%22%3A102100%7D';
     let rentaMedia = 0;
+    let rentaMediaMensual = 0;
     let alquilerCalculado = 0;
+    let alquilerCalculado1 = 0;
+    let alquilerCalculado2 = 0;
 
     fetch(query1)
       .then(response => response.json())
@@ -45,11 +48,25 @@ if (form && direccionInput) {
                 throw new Error('Renta media es 0');
               }
 
+              rentaMedia = Number(rentaMedia);
+              rentaMediaMensual = rentaMedia / 12;
               alquilerCalculado = rentaMedia * 0.2 / 12;
+              alquilerCalculado1 = alquilerCalculado * 0.95;
+              alquilerCalculado2 = alquilerCalculado * 1.05;
+              console.log('Renta media:', rentaMedia);
+              console.log('Renta media mensual:', rentaMediaMensual);
+              console.log('Alquiler calculado:', alquilerCalculado);
+              console.log('Alquiler calculado 1:', alquilerCalculado1);
+              console.log('Alquiler calculado 2:', alquilerCalculado2);
+              const formatNumber = value => Number(value).toLocaleString('es-ES', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              });
 
-              document.getElementById('rentaMedia').textContent = rentaMedia.toFixed(2);
-              document.getElementById('rentaMediaMensual').textContent = (rentaMedia / 12).toFixed(2);
-              document.getElementById('alquilerCalculado').textContent = alquilerCalculado.toFixed(2);
+              document.getElementById('rentaMedia').textContent = formatNumber(rentaMedia);
+              document.getElementById('rentaMediaMensual').textContent = formatNumber(rentaMediaMensual);
+              document.getElementById('alquilerCalculado1').textContent = formatNumber(alquilerCalculado1);
+              document.getElementById('alquilerCalculado2').textContent = formatNumber(alquilerCalculado2);
               document.getElementById('result').classList.remove('d-none');
 
             });
