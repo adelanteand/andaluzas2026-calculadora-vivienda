@@ -1,6 +1,7 @@
 const form = document.querySelector('form');
 const direccionInput = document.querySelector('#direccion');
 let geometryParams = { "xmin": -568602.00437621586, "ymin": 4471863.16399280075, "xmax": -568379.365394629305, "ymax": 4472142.80721383076, "spatialReference": { "wkid": 102100 } };
+let mapInstance = null;
 
 if (form && direccionInput) {
   form.addEventListener('submit', function (event) {
@@ -12,7 +13,7 @@ if (form && direccionInput) {
     const query1 =
       'https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=json&SingleLine=' +
       encodeURIComponent(direccion) +
-      '&outSR=%7B%22wkid%22%3A102100%7D';
+      '&outSR=%7B%22wkid%22%3A102100%7D&outFields=*';
     let rentaMedia = 0;
     let rentaMediaMensual = 0;
     let alquilerCalculado = 0;
@@ -27,8 +28,11 @@ if (form && direccionInput) {
         if (data && data.candidates && data.candidates.length > 0) {
           console.log(data);
           normalizedAddress = data.candidates[0].address;
+          const lat = data.candidates[0].attributes.DisplayY;
+          const lon = data.candidates[0].attributes.DisplayX;
           const extent = data.candidates[0].extent;
           const extentString = JSON.stringify(extent);
+
           console.log('Extent:', extentString);
 
           // Actualizar geometryParams con los valores de extent
@@ -71,6 +75,19 @@ if (form && direccionInput) {
               document.getElementById('result').classList.remove('d-none');
               document.getElementById('newCalculation').classList.remove('d-none');
               document.getElementById('calculationCard').classList.add('d-none');
+
+              if (mapInstance) {
+                mapInstance.remove();
+                mapInstance = null;
+              }
+
+              mapInstance = L.map('map').setView([lat, lon], 14);
+              L.marker([lat, lon]).addTo(mapInstance);
+
+              // Capas base
+              var osmLayer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap<\/a> contributors'
+              }).addTo(mapInstance);
             });
         }
       })

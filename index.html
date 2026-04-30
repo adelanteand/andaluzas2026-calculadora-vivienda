@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Formulario de Dirección</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <link rel="stylesheet" href="main.css">
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
   </head>
   <body class="bg-light">
     <header class="bg-secondary shadow-sm text-center py-4 mb-4">
@@ -48,7 +52,7 @@
         <div class="col-12 col-md-8 col-lg-6">
           <div id="result" class="card shadow-sm border-0 d-none">
             <div class="card-body p-4">
-              <h2 class="h4 mb-3 text-center">Resultado</h2>
+              <h2 class="h3 mb-3 text-center">Resultado</h2>
               <p class="text-center text-muted mb-2">
                 Renta media por hogar al año: <span id="rentaMedia" class="h4 inline-text"></span>
               </p>
@@ -61,6 +65,8 @@
               <p class="mt-5">
                 Dirección consultada: <strong id="direccionConsultada" class="inline-text"></strong>
               </p>
+
+              <div id="map" style="width: 100%; height: 300px;"></div>
             </div>
           </div>
           <div id="error" class="card shadow-sm border-0 d-none">
