@@ -57,12 +57,12 @@ if (form && direccionInput) {
               }
 
               rentaMedia = Number(rentaMedia);
-              rentaMediaMensual = rentaMedia / 12;
-              alquilerCalculado = rentaMedia * 0.2 / 12;
-              alquilerCalculado1 = alquilerCalculado * 0.95;
-              alquilerCalculado2 = alquilerCalculado * 1.05;
+              rentaMediaMensual = Number(rentaMedia) / 12;
+              alquilerCalculado = Number(rentaMedia) * 0.2 / 12;
+              alquilerCalculado1 = Number(alquilerCalculado) * 0.95;
+              alquilerCalculado2 = Number(alquilerCalculado) * 1.05;
 
-              const formatNumber = value => Number(value).toLocaleString('es-ES', {
+              const formatNumber = value => Number(value).toLocaleString('de-DE', {
                 minimumFractionDigits: 0,
                 maximumFractionDigits: 0,
               });
